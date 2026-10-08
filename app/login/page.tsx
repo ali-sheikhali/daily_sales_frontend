@@ -1,7 +1,9 @@
+import LoginContent from "@/features/login/components/LoginContent";
+
 export default function LoginPage() {
     return (
-        <div>
-            hello
-        </div>
+        <>
+        <LoginContent />
+        </>
     )
 }
