@@ -5,12 +5,14 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import { loginSchema } from "../schema/loginSchema";
 import FormLayout from "./FormLayout";
+import { login } from "../api/loginApi";
+import { toast } from "react-hot-toast";
 
 export default function LoginContent() {
-  
+
   const [errors, setErrors] = useState<{ username?: string; password?: string }>({});
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); // stop the page from reloading
 
     const formData = new FormData(e.currentTarget);
@@ -31,7 +33,14 @@ export default function LoginContent() {
     }
 
     setErrors({});
-    console.log(result.data); // { username: "...", password: "..." }
+    
+    try {
+      const response = await login(result.data);
+      console.log(response);
+      } catch (err) {
+      toast.error((err as Error).message || "خطا در ورود به سیستم");
+    }
+
   }
 
   return (
@@ -46,6 +55,7 @@ export default function LoginContent() {
           label="نام کاربری"
           type="text"
           error={errors.username}
+          placeholder="09xxxxxxxxx"
         />
         <Input
           id="password"
