@@ -21,35 +21,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="fa" dir="rtl"
+      lang="fa"
+      dir="rtl"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
-       <Toaster
-          position="top-right"
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Toaster
+          position="top-left"
           reverseOrder={false}
           toastOptions={{
             duration: 3000,
-            style: {
-              background: "#333",
-              color: "#fff",
-            },
-            success: {
-              duration: 3000,
-              iconTheme: {
-                primary: "#22c55e",
-                secondary: "#fff",
-              },
-            },
-            error: {
-              duration: 4000,
-              iconTheme: {
-                primary: "#ef4444",
-                secondary: "#fff",
-              },
-            },
           }}
         />
+      </body>
     </html>
   );
 }
