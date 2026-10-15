@@ -16,6 +16,7 @@ export async function serverApi<T>(
   const res = await fetch(`${BASE_URL}${path}`, {
     ...options,
     headers: {
+      "Content-Type": "application/json",
       ...options?.headers,
       Authorization: `Bearer ${token}`,
     },

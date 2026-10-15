@@ -7,8 +7,10 @@ import { loginSchema } from "../schema/loginSchema";
 import FormLayout from "./FormLayout";
 import { login } from "../api/loginApi";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function LoginContent() {
+  const router = useRouter();
 
   const [errors, setErrors] = useState<{ username?: string; password?: string }>({});
 
@@ -36,7 +38,10 @@ export default function LoginContent() {
     
     try {
       const response = await login(result.data);
-      console.log(response);
+      if (response.success) {
+        toast.success("ورود موفقیت آمیز بود");
+        router.push("/stores")
+      }
       } catch (err) {
       toast.error((err as Error).message || "خطا در ورود به سیستم");
     }
