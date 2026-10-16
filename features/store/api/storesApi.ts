@@ -11,3 +11,10 @@ export async function getAllStores(): Promise<StoreSchema[]> {
     method: "GET",
   });
 }
+
+export async function addNewStore(name: string) {
+  return serverApi("/stores", {
+    method: "POST",
+    body: JSON.stringify({ name }),
+  });
+}

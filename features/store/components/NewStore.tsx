@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Button from "@/components/ui/Button";
+import { addNewStoreAction } from "../actions";
+import toast from "react-hot-toast";
 
 export default function NewStore() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,12 +13,18 @@ export default function NewStore() {
     setIsOpen((prev) => !prev); // open if closed, close if open
   }
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    console.log("New store:", name); // later: call your API here
+  async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  
+  try {
+    await addNewStoreAction(name);
     setName("");
     setIsOpen(false);
+  } catch (error) {
+    console.error(error);
+    toast.error("ساخت فروشگاه ناموفق بود");
   }
+}
 
   return (
     <div>
