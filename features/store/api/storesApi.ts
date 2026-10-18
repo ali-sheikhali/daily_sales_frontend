@@ -18,3 +18,9 @@ export async function addNewStore(name: string) {
     body: JSON.stringify({ name }),
   });
 }
+
+export async function deleteStore(store_id: number): Promise<void> {
+  return serverApi(`/stores/${store_id}`, {
+    method: "DELETE",
+  });
+}
