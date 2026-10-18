@@ -36,17 +36,17 @@ export default function StoreSettingsForm() {
       return;
     }
 
-    console.log(result.data);
-
     setErrors({});
 
     try {
-        await registerManagerAction(result.data);
-        toast.success("مدیر با موفقیت ثبت شد");
+      const response = await registerManagerAction(result.data);
+      console.log("response: ", response);
+      toast.success("مدیر با موفقیت ثبت شد");
     } catch (err) {
       toast.error((err as Error).message || "خطا در ورود به سیستم");
     }
   }
+  
   return (
     <div className="w-10/12 mx-auto my-5">
       <form

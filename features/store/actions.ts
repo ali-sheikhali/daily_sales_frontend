@@ -17,7 +17,8 @@ export async function registerManagerAction(data: {
   password: string;
   password_confirm: string;
 }) {
-  await registerManager(data);
+  const response = await registerManager(data);
   revalidatePath("/stores");
+  return response;
 }
   
