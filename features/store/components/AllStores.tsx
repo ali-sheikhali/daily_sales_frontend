@@ -20,11 +20,12 @@ export default async function AllStores() {
       ) : (
         <ul className="w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
           {stores.map((store) => (
-            <Link href={`/stores/${store.id}`} key={store.id}>
-              <li
-                className="flex justify-between items-center border border-gray-300 rounded-md text-center p-3"
-                key={store.id}
-              >
+            <Link
+              className=" border border-gray-300 rounded-md text-center p-3"
+              href={`/stores/${store.id}`}
+              key={store.id}
+            >
+              <li className="flex justify-between items-center" key={store.id}>
                 <p>{store.name}</p>
                 <div className="flex justify-end ">
                   <DeleteComponent
@@ -32,6 +33,14 @@ export default async function AllStores() {
                   />
                 </div>
               </li>
+              <div>
+                <Link
+                  href={`/stores/${store.id}/settings`}
+                  className="flex justify-start items-center text-xs text-blue-600 mt-2"
+                >
+                  تنظیمات فروشگاه
+                </Link>
+              </div>
             </Link>
           ))}
         </ul>
