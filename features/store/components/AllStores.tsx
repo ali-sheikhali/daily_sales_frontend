@@ -20,28 +20,36 @@ export default async function AllStores() {
       ) : (
         <ul className="w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
           {stores.map((store) => (
-            <Link
-              className=" border border-gray-300 rounded-md text-center p-3"
-              href={`/stores/${store.id}`}
+            <li
               key={store.id}
+              className="relative border border-gray-300 rounded-md text-center p-3 hover:bg-gray-50"
             >
-              <li className="flex justify-between items-center" key={store.id}>
-                <p>{store.name}</p>
-                <div className="flex justify-end ">
+              <div className="flex justify-between items-center">
+                {/* Main link: its ::after covers the whole card */}
+                <Link
+                  href={`/stores/${store.id}`}
+                  className="after:absolute after:inset-0"
+                >
+                  {store.name}
+                </Link>
+
+                {/* relative z-10 puts these above the stretched link */}
+                <div className="relative z-10 flex justify-end">
                   <DeleteComponent
                     onDeleteAction={deleteStoreAction.bind(null, store.id)}
                   />
                 </div>
-              </li>
+              </div>
+
               <div>
                 <Link
                   href={`/stores/${store.id}/settings`}
-                  className="flex justify-start items-center text-xs text-blue-600 mt-2"
+                  className="relative z-10 flex justify-start items-center text-xs text-blue-600 mt-2"
                 >
                   تنظیمات فروشگاه
                 </Link>
               </div>
-            </Link>
+            </li>
           ))}
         </ul>
       )}
