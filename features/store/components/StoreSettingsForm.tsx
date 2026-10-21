@@ -6,6 +6,7 @@ import Input from "@/components/ui/Input";
 import { registerSchema } from "../schemas";
 import toast from "react-hot-toast";
 import { registerManagerAction } from "../actions";
+import { useManagerStore } from "@/store/managerStore";
 
 export default function StoreSettingsForm() {
   const [errors, setErrors] = useState<{
@@ -13,6 +14,10 @@ export default function StoreSettingsForm() {
     password?: string;
     password_confirm?: string;
   }>({});
+
+
+  const setManager = useManagerStore((state) => state.setManager);
+
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,13 +45,13 @@ export default function StoreSettingsForm() {
 
     try {
       const response = await registerManagerAction(result.data);
-      console.log("response: ", response);
+      setManager(response);
       toast.success("مدیر با موفقیت ثبت شد");
     } catch (err) {
       toast.error((err as Error).message || "خطا در ورود به سیستم");
     }
   }
-  
+
   return (
     <div className="w-10/12 mx-auto my-5">
       <form
