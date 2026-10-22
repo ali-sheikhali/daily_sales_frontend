@@ -3,6 +3,10 @@ import type { LoginData } from "../schema/loginSchema";
 
 type LoginResponse = {
   success: boolean;
+  username: string;
+  role: string;
+  id: number;
+  store_id?: number;
 };
 
 export async function login(data: LoginData): Promise<LoginResponse> {

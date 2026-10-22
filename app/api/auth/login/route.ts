@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -17,19 +16,25 @@ export async function POST(request: Request) {
           password: body.password,
         }),
         cache: "no-store",
-      }
+      },
     );
 
     const data = await response.json();
-    
+
     if (!response.ok) {
-        return NextResponse.json(
-            { detail: data.detail ?? "Login failed" },
-            { status: response.status }
-        );
+      return NextResponse.json(
+        { detail: data.detail ?? "Login failed" },
+        { status: response.status },
+      );
     }
-    
-    const result = NextResponse.json({ success: true });
+
+    const result = NextResponse.json({
+      success: true,
+      username: data.username,
+      role: data.role,
+      id: data.id,
+      store_id: data.store_id,
+    });
 
     result.cookies.set("access_token", data.access_token, {
       httpOnly: true,
@@ -43,7 +48,7 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       { detail: "Unable to connect to the authentication server" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
