@@ -3,9 +3,22 @@ import { getAllStores } from "../api/storesApi";
 import NewStore from "./NewStore";
 import DeleteComponent from "@/components/shared/DeleteComponent";
 import { deleteStoreAction } from "../actions";
+import { ApiError } from "@/lib/serverApi";
+import { redirect } from "next/navigation";
 
 export default async function AllStores() {
-  const stores = await getAllStores();
+  let stores: Awaited<ReturnType<typeof getAllStores>>;
+
+  try {
+    stores = await getAllStores();
+  } catch (error) {
+    if (error instanceof ApiError) {
+      if (error.status === 401) redirect("/login");
+      if (error.status === 403) redirect("/403");
+      //   if (error.status === 404) notFound();
+    }
+    throw error; // anything else is a real bug, so let it show
+  }
 
   return (
     <div>

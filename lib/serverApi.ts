@@ -3,6 +3,14 @@ import { getAccessToken } from "./auth";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+export class ApiError extends Error {
+  status: number;
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
 export async function serverApi<T>(
   path: string,
   options?: RequestInit,
@@ -25,7 +33,7 @@ export async function serverApi<T>(
 
   if (!res.ok) {
     const error = await res.json().catch(() => ({}));
-    throw new Error(error.detail || "Request failed");
+    throw new ApiError(res.status, error.detail || "Request failed");
   }
 
   return res.json();
