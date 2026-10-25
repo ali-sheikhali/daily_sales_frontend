@@ -2,10 +2,13 @@ import { ApiError } from "@/lib/serverApi";
 import { allStoreSalesAction } from "../actions";
 import StoreSales from "./StoreSales";
 import { redirect } from "next/navigation";
+import { AllSalesType } from "../schemas";
 
 export default async function StoreDetailContent({ id }: { id: string }) {
+
+  let allSales: AllSalesType;
   try {
-    const allSales = await allStoreSalesAction(parseInt(id));
+    allSales = (await allStoreSalesAction(parseInt(id))) as unknown as AllSalesType;
     console.log("allSales: ", allSales);
   } catch (error) {
     if (error instanceof ApiError) {
@@ -20,7 +23,7 @@ export default async function StoreDetailContent({ id }: { id: string }) {
     <div>
       {id}
 
-      <StoreSales />
+      <StoreSales sales={allSales} />
     </div>
   );
 }
