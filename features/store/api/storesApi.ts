@@ -51,3 +51,9 @@ export async function createStoreManager(data: { store_id: number; user_id: numb
     body: JSON.stringify(data)
   })
 }
+
+export async function getAllStoreSales(store_id: number): Promise<void> {
+  return serverApi(`/sales/${store_id}`, {
+    method: "GET"
+  })
+}
