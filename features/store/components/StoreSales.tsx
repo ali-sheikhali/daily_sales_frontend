@@ -1,6 +1,7 @@
 import { AllSalesType } from "../schemas";
+import AddNewSales from "./AddNewSales";
 
-export default function StoreSales({ sales }: { sales: AllSalesType }) {
+export default function StoreSales({ sales, id }: { sales: AllSalesType, id :number }) {
   // 1. Add all amounts together
   const total = sales.reduce((sum, sale) => sum + sale.amount, 0);
 
@@ -26,7 +27,9 @@ export default function StoreSales({ sales }: { sales: AllSalesType }) {
           <p className="text-2xl font-bold">{sales.length}</p>
         </div>
       </div>
-
+      <div>
+        <AddNewSales id={id} />
+      </div>
       {/* Table */}
       <div className="overflow-hidden rounded-lg border">
         <table className="w-full text-left text-sm">

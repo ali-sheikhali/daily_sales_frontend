@@ -23,7 +23,7 @@ export default async function StoreDetailContent({ id }: { id: string }) {
     <div>
       {id}
 
-      <StoreSales sales={allSales} />
+      <StoreSales sales={allSales} id={parseInt(id)} />
     </div>
   );
 }
