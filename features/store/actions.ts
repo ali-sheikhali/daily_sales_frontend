@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import {
+  addNewSale,
   addNewStore,
   createStoreManager,
   deleteStore,
@@ -51,4 +52,9 @@ export async function createStoreManagerAction(data: {
 export async function allStoreSalesAction(store_id: number) {
   const response = getAllStoreSales(store_id);
   return response;
+}
+
+export async function addNewSaleAction(data: { amount: number; store_id: number }) {
+  await addNewSale(data)
+  revalidatePath("/stores/{store_id}")
 }

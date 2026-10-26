@@ -57,3 +57,11 @@ export async function getAllStoreSales(store_id: number): Promise<void> {
     method: "GET"
   })
 }
+
+
+export async function addNewSale(data: {amount: number; store_id: number}): Promise<void> {
+  return serverApi(`/sales`, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+}
