@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AllSalesType } from "../schemas";
 import AddNewSales from "./AddNewSales";
 
@@ -27,8 +28,14 @@ export default function StoreSales({ sales, id }: { sales: AllSalesType, id :num
           <p className="text-2xl font-bold">{sales.length}</p>
         </div>
       </div>
-      <div>
+      <div className="flex justify-between ">
         <AddNewSales id={id} />
+        <Link
+          href={`/stores/${id}/expenses`}
+          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        >
+          مخارج جدید
+        </Link>
       </div>
       {/* Table */}
       <div className="overflow-hidden rounded-lg border">

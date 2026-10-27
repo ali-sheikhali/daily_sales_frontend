@@ -19,7 +19,6 @@ export default function AddNewSales({id}: {id: number}) {
         amount: parseInt(amount),
         store_id: id
     }
-    console.log("data:" , data);
     
     try {
       await addNewSaleAction(data);
