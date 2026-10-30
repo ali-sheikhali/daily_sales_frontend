@@ -19,7 +19,6 @@ export default async function ExpensesPage(params: {
 
   try {
     expenses = await getExpensesAction(parseInt(id));
-    console.log(expenses);
   } catch (e: unknown) {
     return (
       <div>
@@ -30,7 +29,7 @@ export default async function ExpensesPage(params: {
 
   return (
     <div>
-      <ExpensesTable />
+      <ExpensesTable expenses={expenses} />
     </div>
   );
 }
