@@ -1,12 +1,11 @@
 import { getExpensesAction } from "@/features/expenses/actions";
 import ExpensesTable from "@/features/expenses/components/ExpensesTable";
+import NewExpenses from "@/features/expenses/components/NewExpenses";
 import { GetExpensesResponse } from "@/features/expenses/schemas";
 import { getAccessToken } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export default async function ExpensesPage(params: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function ExpensesPage(params: {params: Promise<{ id: string }>}) {
   const token = await getAccessToken();
 
   if (!token) {
@@ -29,6 +28,7 @@ export default async function ExpensesPage(params: {
 
   return (
     <div>
+      <NewExpenses id = {id} />  
       <ExpensesTable expenses={expenses} />
     </div>
   );
