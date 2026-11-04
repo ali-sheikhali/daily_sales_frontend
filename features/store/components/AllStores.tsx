@@ -22,10 +22,10 @@ export default async function AllStores() {
 
   return (
     <div>
-      <div className="w-full mx-auto my-10">
-      <div className="w-10/12 mx-auto flex justify-end">
-        <NewStore />
-      </div>
+      <div className="w-10/12 mx-auto my-10">
+        <div className="w-full">
+          <NewStore />
+        </div>
       </div>
       {stores.length === 0 ? (
         <p className="flex min-h-dvh items-center justify-center p-4">
