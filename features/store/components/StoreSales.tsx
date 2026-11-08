@@ -18,14 +18,14 @@ export default function StoreSales({ sales, id }: { sales: AllSalesType, id :num
   return (
     <div className="space-y-4 w-10/12 mx-auto">
       {/* Summary */}
-      <div className="flex gap-4">
-        <div className="rounded-lg border p-4">
+      <div className="flex flex-col sm:flex-row justify-between gap-4 w-full mx-auto">
+        <div className="rounded-lg border p-4 flex justify-center items-center gap-3">
           <p className="text-sm text-gray-500">Total sales</p>
-          <p className="text-2xl font-bold">{total.toLocaleString("en-US")}</p>
+          <p className="text-xl font-bold">{total.toLocaleString("en-US")}</p>
         </div>
-        <div className="rounded-lg border p-4">
+        <div className="rounded-lg border p-4 flex justify-center items-center gap-3">
           <p className="text-sm text-gray-500">Number of sales</p>
-          <p className="text-2xl font-bold">{sales.length}</p>
+          <p className="text-xl font-bold">{sales.length}</p>
         </div>
       </div>
       <div className="flex justify-between ">
