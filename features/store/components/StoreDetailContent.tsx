@@ -5,10 +5,11 @@ import { redirect } from "next/navigation";
 import { AllSalesType } from "../schemas";
 
 export default async function StoreDetailContent({ id }: { id: string }) {
-
   let allSales: AllSalesType;
   try {
-    allSales = (await allStoreSalesAction(parseInt(id))) as unknown as AllSalesType;
+    allSales = (await allStoreSalesAction(
+      parseInt(id),
+    )) as unknown as AllSalesType;
     console.log("allSales: ", allSales);
   } catch (error) {
     if (error instanceof ApiError) {
@@ -20,9 +21,7 @@ export default async function StoreDetailContent({ id }: { id: string }) {
   }
 
   return (
-    <div>
-      {id}
-
+    <div className="pt-5">
       <StoreSales sales={allSales} id={parseInt(id)} />
     </div>
   );
