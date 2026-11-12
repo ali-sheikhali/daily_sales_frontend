@@ -32,7 +32,7 @@ export default function StoreSales({ sales, id }: { sales: AllSalesType, id :num
         <AddNewSales id={id} />
         <Link
           href={`/stores/${id}/expenses`}
-          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+          className="flex justify-center items-center rounded-lg bg-blue-600 h-12 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
         >
           مخارج جدید
         </Link>
