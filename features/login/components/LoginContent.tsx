@@ -38,7 +38,6 @@ export default function LoginContent() {
     
     try {
       const response = await login(result.data);
-      console.log("Login response:", response);
       if (response.success) {
         toast.success("ورود موفقیت آمیز بود");
         if (response.role === "owner") {

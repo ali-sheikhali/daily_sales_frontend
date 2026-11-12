@@ -10,7 +10,6 @@ export default async function StoreDetailContent({ id }: { id: string }) {
     allSales = (await allStoreSalesAction(
       parseInt(id),
     )) as unknown as AllSalesType;
-    console.log("allSales: ", allSales);
   } catch (error) {
     if (error instanceof ApiError) {
       if (error.status === 401) redirect("/login");
