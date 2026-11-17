@@ -41,7 +41,7 @@ export default function DeleteComponent({
       {loading ? (
         "Deleting..."
       ) : (
-        <Image src="/trash.svg" alt="" width={16} height={16} />
+        <Image src="/trash.svg" alt="trash-icon" className="" width={20} height={20} />
       )}
     </button>
   );
